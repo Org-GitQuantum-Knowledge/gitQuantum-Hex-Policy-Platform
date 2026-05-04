@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarking Guide - HEX Policy Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">HEX Policy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../dashboard.html">Dashboard</a></li>
+                <li><a href="#">Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <h3>Documentation</h3>
+            <ul class="docs-menu">
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="benchmarking.html" class="active">Benchmarking</a></li>
+                <li><a href="examples.html">Examples</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Benchmarking Guide</h1>
+
+            <section>
+                <h2>Running Benchmarks</h2>
+                <p>The HEX Policy Platform includes a comprehensive benchmarking suite for performance analysis.</p>
+
+                <h3>Basic Benchmark</h3>
+                <pre><code>import { BenchmarkRunner } from '@hex/benchmark';
+
+const runner = new BenchmarkRunner({
+  iterations: 100000,
+  ruleCount: 10,
+  warmup: true
+});
+
+const result = runner.run();
+console.log(BenchmarkRunner.formatResult(result));</code></pre>
+
+                <h3>Multiple Runs</h3>
+                <pre><code>const results = runner.runMultiple(5);
+console.log(BenchmarkRunner.formatMultipleResults(results));</code></pre>
+            </section>
+
+            <section>
+                <h2>Configuration Options</h2>
+                <p>The BenchmarkRunner accepts a configuration object:</p>
+                <ul>
+                    <li><code>iterations</code>: Number of policy evaluations (default: 100000)</li>
+                    <li><code>ruleCount</code>: Number of rules to generate (default: 10)</li>
+                    <li><code>warmup</code>: Enable JIT warmup phase (default: true)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Interpreting Results</h2>
+                <p>Each benchmark result contains:</p>
+                <ul>
+                    <li><strong>hexTime</strong>: Total execution time for HEX VM in milliseconds</li>
+                    <li><strong>opaTime</strong>: Total execution time for OPA simulator in milliseconds</li>
+                    <li><strong>speedup</strong>: Ratio of OPA time to HEX time (values > 1 mean HEX is faster)</li>
+                    <li><strong>iterations</strong>: Number of policy evaluations performed</li>
+                    <li><strong>timestamp</strong>: When the benchmark was executed</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Performance Tips</h2>
+                <ol>
+                    <li><strong>Warmup Phase</strong>: Always enable warmup to stabilize JIT compilation</li>
+                    <li><strong>Multiple Runs</strong>: Run benchmarks multiple times to identify variance</li>
+                    <li><strong>System Load</strong>: Run benchmarks on a quiet system for consistent results</li>
+                    <li><strong>Rule Optimization</strong>: Place frequently matching rules first</li>
+                    <li><strong>Context Complexity</strong>: Simpler contexts evaluate faster</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Interactive Dashboard</h2>
+                <p>Use the <a href="../dashboard.html">interactive dashboard</a> to visualize benchmark results in real-time with multiple chart types and data persistence.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HEX Policy Platform</h4>
+                <p>High-performance policy evaluation engine with bytecode compilation.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HEX Policy Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
