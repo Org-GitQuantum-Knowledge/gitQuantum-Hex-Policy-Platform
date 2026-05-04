@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - HEX Policy Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">HEX Policy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../dashboard.html">Dashboard</a></li>
+                <li><a href="#">Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <h3>Documentation</h3>
+            <ul class="docs-menu">
+                <li><a href="getting-started.html" class="active">Getting Started</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="benchmarking.html">Benchmarking</a></li>
+                <li><a href="examples.html">Examples</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Getting Started with HEX Policy Platform</h1>
+
+            <section>
+                <h2>Installation</h2>
+                <p>The HEX Policy Platform is available as an npm package. Install it using:</p>
+                <pre><code>npm install @hex/core @hex/benchmark</code></pre>
+            </section>
+
+            <section>
+                <h2>Quick Start</h2>
+                <p>Here's a simple example to get you started:</p>
+                <pre><code>import { PolicyVM, compileToBytecode } from '@hex/core';
+
+// Define your policy rules
+const rules = [
+  {
+    attribute: 'role',
+    element: 'document',
+    perm: 'read'
+  }
+];
+
+// Compile rules to bytecode
+const bytecode = compileToBytecode(rules);
+
+// Create a VM instance
+const vm = new PolicyVM(bytecode);
+
+// Execute a policy decision
+const decision = vm.execute({
+  subject: { role: 'admin' },
+  object: { type: 'document' },
+  action: 'read'
+});
+
+console.log(decision); // 'ALLOW'</code></pre>
+            </section>
+
+            <section>
+                <h2>Understanding the Architecture</h2>
+                <p>The HEX Policy Platform uses a three-stage pipeline:</p>
+                <ol>
+                    <li><strong>AST (Abstract Syntax Tree)</strong>: Your policy rules are parsed</li>
+                    <li><strong>DAG (Directed Acyclic Graph)</strong>: Rules are optimized into a dependency graph</li>
+                    <li><strong>Bytecode</strong>: The DAG is compiled into efficient bytecode for execution</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Core Concepts</h2>
+                <h3>Policy Rules</h3>
+                <p>A policy rule consists of three components:</p>
+                <ul>
+                    <li><strong>attribute</strong>: The subject attribute to match</li>
+                    <li><strong>element</strong>: The object type to match</li>
+                    <li><strong>perm</strong>: The action/permission to match</li>
+                </ul>
+
+                <h3>Context</h3>
+                <p>The context is the data being evaluated against your policies:</p>
+                <pre><code>interface Context {
+  subject: Record&lt;string, any&gt;;  // User/actor information
+  object: Record&lt;string, any&gt;;    // Resource information
+  action: string;                  // Action being performed
+}</code></pre>
+
+                <h3>Decision</h3>
+                <p>The result of policy evaluation is always one of two values:</p>
+                <ul>
+                    <li><strong>ALLOW</strong>: The action is permitted</li>
+                    <li><strong>DENY</strong>: The action is not permitted (default)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Next Steps</h2>
+                <ul>
+                    <li>Check out the <a href="api-reference.html">API Reference</a> for complete documentation</li>
+                    <li>Explore <a href="examples.html">Code Examples</a> for common use cases</li>
+                    <li>Learn about <a href="benchmarking.html">Benchmarking</a> to optimize performance</li>
+                    <li>Try the <a href="../dashboard.html">Interactive Dashboard</a> to visualize performance</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HEX Policy Platform</h4>
+                <p>High-performance policy evaluation engine with bytecode compilation.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HEX Policy Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
