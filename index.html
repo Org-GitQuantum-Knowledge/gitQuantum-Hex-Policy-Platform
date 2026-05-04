@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HEX Policy Platform - High-performance policy evaluation engine with bytecode compilation and real-time benchmarking.">
+    <meta name="keywords" content="policy engine, bytecode VM, benchmarking, authorization, access control">
+    <meta name="author" content="HEX Policy Platform Team">
+    <title>HEX Policy Platform - High-Performance Policy Engine</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">HEX Policy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#documentation">Documentation</a></li>
+                <li><a href="dashboard.html" class="nav-link-btn">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">High-Performance Policy Evaluation Engine</h1>
+            <p class="hero-subtitle">Compile policy rules to bytecode. Execute with blazing speed. Benchmark in real-time.</p>
+            <div class="hero-buttons">
+                <a href="dashboard.html" class="btn btn-primary btn-lg">Launch Dashboard</a>
+                <a href="#documentation" class="btn btn-secondary btn-lg">View Documentation</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">28</div>
+                    <div class="stat-label">Test Cases</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">96%</div>
+                    <div class="stat-label">Code Coverage</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Type Safe</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">typescript</span>
+                </div>
+                <pre><code>// Compile and execute
+const bytecode = compileToBytecode(rules);
+const vm = new PolicyVM(bytecode);
+
+const decision = vm.execute({
+  subject: { role: 'admin' },
+  object: { type: 'document' },
+  action: 'read'
+});
+
+console.log(decision); // 'ALLOW'</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Powerful Features</h2>
+            <p>Everything you need for high-performance policy evaluation</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>Bytecode Compilation</h3>
+                <p>Transform policy rules into optimized bytecode for maximum performance and minimal overhead.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>High Performance</h3>
+                <p>Execute thousands of policy evaluations per second with a lightweight virtual machine.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Benchmarking</h3>
+                <p>Interactive dashboard for visualizing performance metrics and comparing implementations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3>Comprehensive Testing</h3>
+                <p>28 test cases with 96%+ code coverage ensuring reliability and correctness.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Type Safe</h3>
+                <p>Full TypeScript strict mode implementation for maximum type safety and IDE support.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Well Documented</h3>
+                <p>Complete documentation with examples, API reference, and troubleshooting guides.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="performance">
+        <div class="section-header">
+            <h2>Performance Metrics</h2>
+            <p>Benchmark results on standard hardware</p>
+        </div>
+        <div class="performance-grid">
+            <div class="perf-card">
+                <h3>Small (5 Rules)</h3>
+                <div class="perf-metric">
+                    <span class="perf-label">HEX Time:</span>
+                    <span class="perf-value">10.21ms</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="perf-label">OPA Time:</span>
+                    <span class="perf-value">6.31ms</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="perf-label">Iterations:</span>
+                    <span class="perf-value">10,000</span>
+                </div>
+            </div>
+            <div class="perf-card">
+                <h3>Medium (10 Rules)</h3>
+                <div class="perf-metric">
+                    <span class="perf-label">HEX Time:</span>
+                    <span class="perf-value">15.85ms</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="perf-label">OPA Time:</span>
+                    <span class="perf-value">11.04ms</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="perf-label">Iterations:</span>
+                    <span class="perf-value">50,000</span>
+                </div>
+            </div>
+            <div class="perf-card">
+                <h3>Large (20 Rules)</h3>
+                <div class="perf-metric">
+                    <span class="perf-label">HEX Time:</span>
+                    <span class="perf-value">30.20ms</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="perf-label">OPA Time:</span>
+                    <span class="perf-value">25.28ms</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="perf-label">Iterations:</span>
+                    <span class="perf-value">100,000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture">
+        <div class="section-header">
+            <h2>Architecture</h2>
+            <p>Three-stage compilation and execution pipeline</p>
+        </div>
+        <div class="architecture-flow">
+            <div class="flow-stage">
+                <div class="stage-number">1</div>
+                <h3>AST</h3>
+                <p>Abstract Syntax Tree</p>
+                <p class="stage-desc">Policy rules parsed into abstract representation</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-stage">
+                <div class="stage-number">2</div>
+                <h3>DAG</h3>
+                <p>Directed Acyclic Graph</p>
+                <p class="stage-desc">Rules optimized into dependency graph</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-stage">
+                <div class="stage-number">3</div>
+                <h3>Bytecode</h3>
+                <p>Virtual Machine</p>
+                <p class="stage-desc">Efficient execution on custom VM</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="documentation">
+        <div class="section-header">
+            <h2>Documentation</h2>
+            <p>Complete guides and API reference</p>
+        </div>
+        <div class="docs-grid">
+            <a href="docs/getting-started.html" class="doc-card">
+                <h3>Getting Started</h3>
+                <p>Installation, setup, and first steps with HEX Policy Platform.</p>
+                <span class="doc-arrow">→</span>
+            </a>
+            <a href="docs/api-reference.html" class="doc-card">
+                <h3>API Reference</h3>
+                <p>Complete API documentation with examples and type definitions.</p>
+                <span class="doc-arrow">→</span>
+            </a>
+            <a href="docs/benchmarking.html" class="doc-card">
+                <h3>Benchmarking Guide</h3>
+                <p>How to run benchmarks, interpret results, and optimize performance.</p>
+                <span class="doc-arrow">→</span>
+            </a>
+            <a href="docs/examples.html" class="doc-card">
+                <h3>Code Examples</h3>
+                <p>Practical examples and use cases for policy evaluation.</p>
+                <span class="doc-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Explore the interactive dashboard or dive into the documentation.</p>
+        <div class="cta-buttons">
+            <a href="dashboard.html" class="btn btn-primary btn-lg">Launch Dashboard</a>
+            <a href="docs/getting-started.html" class="btn btn-secondary btn-lg">View Docs</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HEX Policy Platform</h4>
+                <p>High-performance policy evaluation engine with bytecode compilation.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#performance">Performance</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Documentation</h4>
+                <ul>
+                    <li><a href="docs/getting-started.html">Getting Started</a></li>
+                    <li><a href="docs/api-reference.html">API Reference</a></li>
+                    <li><a href="docs/benchmarking.html">Benchmarking</a></li>
+                    <li><a href="docs/examples.html">Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://github.com">GitHub Repository</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">License</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HEX Policy Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
