@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Examples - HEX Policy Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">HEX Policy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../dashboard.html">Dashboard</a></li>
+                <li><a href="#">Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <h3>Documentation</h3>
+            <ul class="docs-menu">
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="benchmarking.html">Benchmarking</a></li>
+                <li><a href="examples.html" class="active">Examples</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Code Examples</h1>
+
+            <section>
+                <h2>Basic Policy Evaluation</h2>
+                <pre><code>import { PolicyVM, compileToBytecode } from '@hex/core';
+
+// Define policy rules
+const rules = [
+  { attribute: 'role', element: 'document', perm: 'read' },
+  { attribute: 'role', element: 'document', perm: 'write' }
+];
+
+// Compile to bytecode
+const bytecode = compileToBytecode(rules);
+const vm = new PolicyVM(bytecode);
+
+// Evaluate a read request
+const readDecision = vm.execute({
+  subject: { role: 'admin' },
+  object: { type: 'document' },
+  action: 'read'
+});
+console.log(readDecision); // 'ALLOW'
+
+// Evaluate a delete request (not in rules)
+const deleteDecision = vm.execute({
+  subject: { role: 'admin' },
+  object: { type: 'document' },
+  action: 'delete'
+});
+console.log(deleteDecision); // 'DENY'</code></pre>
+            </section>
+
+            <section>
+                <h2>Role-Based Access Control</h2>
+                <pre><code>const rbacRules = [
+  { attribute: 'role', element: 'admin_panel', perm: 'access' },
+  { attribute: 'role', element: 'user_profile', perm: 'edit' },
+  { attribute: 'role', element: 'reports', perm: 'view' }
+];
+
+const bytecode = compileToBytecode(rbacRules);
+const vm = new PolicyVM(bytecode);
+
+function checkAccess(userRole, resource, action) {
+  const decision = vm.execute({
+    subject: { role: userRole },
+    object: { type: resource },
+    action: action
+  });
+  return decision === 'ALLOW';
+}
+
+console.log(checkAccess('admin', 'admin_panel', 'access'));     // true
+console.log(checkAccess('user', 'admin_panel', 'access'));      // false
+console.log(checkAccess('user', 'user_profile', 'edit'));       // true</code></pre>
+            </section>
+
+            <section>
+                <h2>Attribute-Based Access Control</h2>
+                <pre><code>const abacRules = [
+  { attribute: 'department', element: 'salary_report', perm: 'view' },
+  { attribute: 'clearance_level', element: 'classified_doc', perm: 'access' }
+];
+
+const bytecode = compileToBytecode(abacRules);
+const vm = new PolicyVM(bytecode);
+
+const hrUser = {
+  subject: { department: 'hr', clearance_level: 'secret' },
+  object: { type: 'salary_report' },
+  action: 'view'
+};
+
+const decision = vm.execute(hrUser);
+console.log(decision); // 'ALLOW'</code></pre>
+            </section>
+
+            <section>
+                <h2>Performance Benchmarking</h2>
+                <pre><code>import { BenchmarkRunner } from '@hex/benchmark';
+
+// Create runner with specific configuration
+const runner = new BenchmarkRunner({
+  iterations: 50000,
+  ruleCount: 15,
+  warmup: true
+});
+
+// Run single benchmark
+const result = runner.run();
+console.log(`HEX Time: ${result.hexTime.toFixed(2)}ms`);
+console.log(`OPA Time: ${result.opaTime.toFixed(2)}ms`);
+console.log(`Speedup: ${result.speedup.toFixed(2)}x`);
+
+// Run multiple benchmarks for stability analysis
+const results = runner.runMultiple(5);
+const avgSpeedup = results.reduce((sum, r) => sum + r.speedup, 0) / results.length;
+console.log(`Average Speedup: ${avgSpeedup.toFixed(2)}x`);</code></pre>
+            </section>
+
+            <section>
+                <h2>Complex Policies</h2>
+                <pre><code>// Multi-tenant SaaS policy
+const multiTenantRules = [
+  { attribute: 'tenant_id', element: 'tenant_data', perm: 'read' },
+  { attribute: 'tenant_id', element: 'tenant_data', perm: 'write' },
+  { attribute: 'is_admin', element: 'system_config', perm: 'modify' },
+  { attribute: 'subscription_tier', element: 'premium_features', perm: 'access' }
+];
+
+const bytecode = compileToBytecode(multiTenantRules);
+const vm = new PolicyVM(bytecode);
+
+const tenant1User = {
+  subject: { 
+    tenant_id: 'tenant-123',
+    is_admin: false,
+    subscription_tier: 'premium'
+  },
+  object: { type: 'tenant_data' },
+  action: 'read'
+};
+
+console.log(vm.execute(tenant1User)); // 'ALLOW'</code></pre>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HEX Policy Platform</h4>
+                <p>High-performance policy evaluation engine with bytecode compilation.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HEX Policy Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
