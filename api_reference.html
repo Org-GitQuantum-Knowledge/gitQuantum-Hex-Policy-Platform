@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - HEX Policy Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">HEX Policy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../dashboard.html">Dashboard</a></li>
+                <li><a href="#">Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <h3>Documentation</h3>
+            <ul class="docs-menu">
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="api-reference.html" class="active">API Reference</a></li>
+                <li><a href="benchmarking.html">Benchmarking</a></li>
+                <li><a href="examples.html">Examples</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>API Reference</h1>
+
+            <section>
+                <h2>PolicyVM</h2>
+                <p>The core virtual machine for executing compiled policy bytecode.</p>
+                
+                <h3>Constructor</h3>
+                <pre><code>constructor(bytecode: any[])</code></pre>
+                <p>Creates a new PolicyVM instance with compiled bytecode.</p>
+
+                <h3>Methods</h3>
+                <h4>execute(ctx: Context): Decision</h4>
+                <p>Executes the bytecode against the provided context and returns a decision.</p>
+                <pre><code>const vm = new PolicyVM(bytecode);
+const decision = vm.execute(context);
+// Returns: 'ALLOW' | 'DENY'</code></pre>
+            </section>
+
+            <section>
+                <h2>Compiler</h2>
+                <p>Transforms policy rules into optimized bytecode.</p>
+
+                <h3>Functions</h3>
+                <h4>compileToBytecode(rules: any[]): any[]</h4>
+                <p>Compiles an array of policy rules into bytecode format.</p>
+                <pre><code>import { compileToBytecode } from '@hex/core';
+
+const rules = [
+  { attribute: 'role', element: 'document', perm: 'read' }
+];
+const bytecode = compileToBytecode(rules);</code></pre>
+            </section>
+
+            <section>
+                <h2>Type Definitions</h2>
+                
+                <h3>Context</h3>
+                <pre><code>interface Context {
+  subject: Record&lt;string, any&gt;;
+  object: Record&lt;string, any&gt;;
+  action: string;
+}</code></pre>
+
+                <h3>Decision</h3>
+                <pre><code>type Decision = 'ALLOW' | 'DENY';</code></pre>
+            </section>
+
+            <section>
+                <h2>Benchmark API</h2>
+                <p>The benchmark suite provides performance analysis tools.</p>
+
+                <h3>BenchmarkRunner</h3>
+                <pre><code>import { BenchmarkRunner } from '@hex/benchmark';
+
+const runner = new BenchmarkRunner({
+  iterations: 100000,
+  ruleCount: 10,
+  warmup: true
+});
+
+const result = runner.run();
+// Returns: BenchmarkResult</code></pre>
+
+                <h3>BenchmarkResult</h3>
+                <pre><code>interface BenchmarkResult {
+  hexTime: number;      // HEX VM execution time in ms
+  opaTime: number;      // OPA simulator execution time in ms
+  speedup: number;      // Speedup factor (opaTime / hexTime)
+  iterations: number;   // Number of iterations
+  timestamp: Date;      // When the benchmark was run
+}</code></pre>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HEX Policy Platform</h4>
+                <p>High-performance policy evaluation engine with bytecode compilation.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; gitQuantum 2026. | HEX Policy Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
