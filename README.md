@@ -1,1 +1,15 @@
-HEX Policy Benchmark DashboardAn interactive web-based visualization dashboard for analyzing the performance of the HEX Policy VM compared to the OPA simulator.Features•Real-time Benchmark Execution: Run benchmarks directly from the browser with configurable rule counts•Interactive Charts: Visualize performance metrics with multiple chart types•Performance Metrics: Track execution times, speedup factors, and performance trends•Data Persistence: Benchmark results are automatically saved to browser local storage•Responsive Design: Works seamlessly on desktop and mobile devices•Dark Theme: Professional dark interface optimized for data visualizationGetting StartedPrerequisites•Modern web browser with JavaScript enabled•No build tools or dependencies required (uses CDN for Chart.js)Running the Dashboard1.Open index.html in a web browser2.Click "Run Benchmark" to execute a benchmark with the selected rule count3.View results in real-time charts and data table4.Use "Clear Data" to reset all results
+# HEX Policy Platform
+
+AST → DAG → Bytecode Policy VM with OPA/Rego benchmarking.
+
+## Install
+npm install
+
+## Build
+npm run build
+
+## Test
+npm test
+
+## Benchmark
+npm run bench
