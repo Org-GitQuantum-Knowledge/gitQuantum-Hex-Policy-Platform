@@ -1,0 +1,156 @@
+.docs-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 200px);
+}
+
+.docs-sidebar {
+    background-color: var(--surface);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.docs-sidebar h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.docs-menu {
+    list-style: none;
+}
+
+.docs-menu li {
+    margin-bottom: 0.5rem;
+}
+
+.docs-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.docs-menu a:hover {
+    background-color: var(--surface-light);
+    color: var(--primary);
+}
+
+.docs-menu a.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.docs-content {
+    background-color: var(--surface);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.docs-content h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.docs-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.docs-content h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.docs-content section {
+    margin-bottom: 2rem;
+}
+
+.docs-content p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.docs-content ul,
+.docs-content ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.docs-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.docs-content a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.docs-content a:hover {
+    color: var(--secondary);
+}
+
+.docs-content pre {
+    background-color: var(--surface-light);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+}
+
+.docs-content code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.docs-content pre code {
+    color: var(--text-secondary);
+}
+
+.docs-content p code {
+    background-color: var(--surface-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+    .docs-container {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+        position: static;
+    }
+
+    .docs-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .docs-content h2 {
+        font-size: 1.2rem;
+    }
+}
