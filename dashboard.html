@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark Dashboard - HEX Policy Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">HEX Policy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="docs/getting-started.html">Docs</a></li>
+                <li><a href="#" class="nav-link-btn">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Benchmark Dashboard</h1>
+            <p class="subtitle">Real-time performance analysis and visualization</p>
+        </header>
+
+        <div class="controls">
+            <button id="runBenchmarkBtn" class="btn btn-primary">Run Benchmark</button>
+            <button id="clearDataBtn" class="btn btn-secondary">Clear Data</button>
+            <select id="ruleCountSelect" class="select">
+                <option value="5">5 Rules</option>
+                <option value="10" selected>10 Rules</option>
+                <option value="20">20 Rules</option>
+                <option value="50">50 Rules</option>
+            </select>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>Latest HEX Time</h3>
+                <div class="metric-value" id="hexTimeValue">--</div>
+                <p class="metric-unit">milliseconds</p>
+            </div>
+            <div class="metric-card">
+                <h3>Latest OPA Time</h3>
+                <div class="metric-value" id="opaTimeValue">--</div>
+                <p class="metric-unit">milliseconds</p>
+            </div>
+            <div class="metric-card">
+                <h3>Speedup Factor</h3>
+                <div class="metric-value" id="speedupValue">--</div>
+                <p class="metric-unit">OPA / HEX ratio</p>
+            </div>
+            <div class="metric-card">
+                <h3>Total Runs</h3>
+                <div class="metric-value" id="runsValue">0</div>
+                <p class="metric-unit">benchmarks executed</p>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-wrapper">
+                <h2>Execution Time Comparison</h2>
+                <canvas id="timeChart"></canvas>
+            </div>
+
+            <div class="chart-wrapper">
+                <h2>Speedup Over Time</h2>
+                <canvas id="speedupChart"></canvas>
+            </div>
+
+            <div class="chart-wrapper">
+                <h2>Performance by Rule Count</h2>
+                <canvas id="ruleCountChart"></canvas>
+            </div>
+
+            <div class="chart-wrapper">
+                <h2>Execution Time Distribution</h2>
+                <canvas id="distributionChart"></canvas>
+            </div>
+        </div>
+
+        <div class="data-section">
+            <h2>Benchmark Results</h2>
+            <div class="table-wrapper">
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>Run #</th>
+                            <th>HEX Time (ms)</th>
+                            <th>OPA Time (ms)</th>
+                            <th>Speedup</th>
+                            <th>Rules</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HEX Policy Platform</h4>
+                <p>High-performance policy evaluation engine with bytecode compilation.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="docs/getting-started.html">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HEX Policy Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
